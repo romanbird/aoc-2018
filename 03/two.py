@@ -21,9 +21,6 @@ for claim in claims:
             else:
                 matrix[row,column]=-1
 
-
-print(matrix)
-
 nums = []
 
 for i in matrix:
