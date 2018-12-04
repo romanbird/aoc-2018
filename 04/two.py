@@ -49,15 +49,19 @@ for i in x:
 highestQuantity=0
 highestGuard=None
 highestIndex=None
+highestV=None
 for k,v in guards.items():
+    if list(map(sum,zip(*v))) == []:
+        continue
     if max(list(map(sum,zip(*v)))) > highestQuantity:
         highestGuard=k
+        highestV=v
         highestQuantity=max(map(sum,zip(*v)))
         highestIndex=list(map(sum,zip(*v))).index(max(map(sum,zip(*v))))
 
-indexFINAL = (list(map(sum,zip(*v))).index(max(map(sum,zip(*v)))))
+indexFINAL = (list(map(sum,zip(*highestV))).index(max(map(sum,zip(*highestV)))))
 print(indexFINAL)
-print(highestGuard)#not 50679
+print(highestGuard)#not 50679 or 67572
 print(indexFINAL*highestGuard)
 
 
