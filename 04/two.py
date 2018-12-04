@@ -24,7 +24,6 @@ class Instruction:
             self.asleep = True
 
 guards = dict()
-guards_count=dict()
 
 x = [Instruction(i.strip()) for i in raw]
 x = sorted(x, key=lambda i: i.date)
@@ -33,7 +32,6 @@ for i in x:
     if i.declarative:
         if i.id not in guards:
             guards[i.id]=[]
-            guards_count[i.id]=0
         current = i.id
     elif i.asleep:
         lowest = i.minute
@@ -42,29 +40,25 @@ for i in x:
         for j in range(lowest,i.minute):
             day[j]+=1
         guards[current].append(day)
-        guards_count[current]+=(i.minute-lowest)
-
-biggest_sleeper = max(guards_count, key=guards_count.get)
-
-daylog = guards[biggest_sleeper]
-
-
-sums = [sum(col) for col in zip(*daylog)]
-
-biggest_minute = (sums.index(max(sums)))
-
-
-print(biggest_minute)
-print(biggest_sleeper)
-
-print(biggest_minute*biggest_sleeper)
 
 
 
+#sums = [sum(col) for col in zip(*daylog)]
 
+#biggest_minute = (sums.index(max(sums)))
+highestQuantity=0
+highestGuard=None
+highestIndex=None
+for k,v in guards.items():
+    if max(list(map(sum,zip(*v)))) > highestQuantity:
+        highestGuard=k
+        highestQuantity=max(map(sum,zip(*v)))
+        highestIndex=list(map(sum,zip(*v))).index(max(map(sum,zip(*v))))
 
-
-
+indexFINAL = (list(map(sum,zip(*v))).index(max(map(sum,zip(*v)))))
+print(indexFINAL)
+print(highestGuard)#not 50679
+print(indexFINAL*highestGuard)
 
 
 
