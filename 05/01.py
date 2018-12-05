@@ -16,4 +16,4 @@ while running:
         else:
             running=False
             break
-print(length)
+print(length) #EXECUTION TIME 67 SECONDS :POGGERS:
